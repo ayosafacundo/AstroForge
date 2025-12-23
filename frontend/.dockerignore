@@ -1,0 +1,10 @@
+# ignore environment variables
+.env
+
+# node modules will be automatically downloaded on image setup
+node_modules
+
+# ignore already built website
+dist
+build
+

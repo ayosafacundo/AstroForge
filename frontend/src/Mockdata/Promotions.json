@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Robotics Starter Pack",
+    "description": "Everything you need to build your first robot. Includes chassis, joints, and accessories.",
+    "discount": 40,
+    "itemCount": 12,
+    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=300&fit=crop",
+    "endsAt": "Dec 25",
+    "category": "Robotics"
+  },
+  {
+    "id": 2,
+    "title": "Holiday Decorations Bundle",
+    "description": "Festive ornaments, tree toppers, and holiday-themed prints for the season.",
+    "discount": 35,
+    "itemCount": 24,
+    "image": "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=600&h=300&fit=crop",
+    "endsAt": "Dec 31",
+    "category": "Decor"
+  }
+]

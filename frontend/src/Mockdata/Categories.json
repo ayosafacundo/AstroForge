@@ -1,0 +1,99 @@
+
+[
+  {
+    "id": "gaming",
+    "name": "Gaming",
+    "description": "Controllers, dice, miniatures, and accessories for gamers",
+    "icon": "Gamepad2",
+    "productCount": 1256,
+    "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "home-decor",
+    "name": "Home Decor",
+    "description": "Vases, lamps, organizers, and decorative pieces for your space",
+    "icon": "Home",
+    "productCount": 2341,
+    "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "jewelry",
+    "name": "Jewelry",
+    "description": "Rings, pendants, earrings, and wearable art pieces",
+    "icon": "Gem",
+    "productCount": 892,
+    "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "tools",
+    "name": "Tools & Gadgets",
+    "description": "Functional tools, holders, and practical everyday items",
+    "icon": "Wrench",
+    "productCount": 1678,
+    "image": "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "art",
+    "name": "Art & Sculptures",
+    "description": "Artistic pieces, sculptures, and decorative figurines",
+    "icon": "Palette",
+    "productCount": 3124,
+    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "cosplay",
+    "name": "Cosplay & Props",
+    "description": "Helmets, weapons, armor, and costume accessories",
+    "icon": "Drama",
+    "productCount": 784,
+    "image": "https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "mechanical",
+    "name": "Mechanical",
+    "description": "Gears, mechanisms, kinetic sculptures, and moving parts",
+    "icon": "Cog",
+    "productCount": 567,
+    "image": "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "garden",
+    "name": "Garden & Outdoors",
+    "description": "Planters, garden decorations, and outdoor accessories",
+    "icon": "Flower2",
+    "productCount": 445,
+    "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "robotics",
+    "name": "Robotics",
+    "description": "Robot parts, drones, mechanical components, and automation",
+    "icon": "Bot",
+    "productCount": 923,
+    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "gifts",
+    "name": "Gifts & Novelty",
+    "description": "Unique gifts, novelty items, and personalized presents",
+    "icon": "Gift",
+    "productCount": 1567,
+    "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "wellness",
+    "name": "Wellness",
+    "description": "Massage tools, ergonomic aids, and self-care items",
+    "icon": "Heart",
+    "productCount": 334,
+    "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"
+  },
+  {
+    "id": "office",
+    "name": "Office & Work",
+    "description": "Desk organizers, cable management, and workspace tools",
+    "icon": "Briefcase",
+    "productCount": 789,
+    "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop"
+  }
+]

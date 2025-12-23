@@ -1,0 +1,38 @@
+[
+    { 
+        "name": "Gaming",
+        "count": 156,
+        "discount": "Up to 50% off",
+        "icon": "🎮"
+    },
+    { 
+        "name": "Home Decor",
+        "count": 234,
+        "discount": "Up to 40% off",
+        "icon": "🏠"
+    },
+    { 
+        "name": "Jewelry",
+        "count": 89,
+        "discount": "Up to 30% off",
+        "icon": "💎"
+    },
+    { 
+        "name": "Tools",
+        "count": 167,
+        "discount": "Up to 35% off",
+        "icon": "🔧"
+    },
+    { 
+        "name": "Art",
+        "count": 312,
+        "discount": "Up to 45% off",
+        "icon": "🎨"
+    },
+    { 
+        "name": "Cosplay",
+        "count": 78,
+        "discount": "Up to 55% off",
+        "icon": "🎭"
+    }
+]

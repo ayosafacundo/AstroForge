@@ -1,0 +1,46 @@
+[
+  {
+    "id": "p1",
+    "name": "Articulated Dragon XL",
+    "price": 15.99,
+    "originalPrice": 29.99,
+    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+    "creator": "DragonForge",
+    "category": "Figurines",
+    "isPromotion": true,
+    "discount": 47
+  },
+  {
+    "id": "p2",
+    "name": "Mechanical Spider Bot",
+    "price": 22.99,
+    "originalPrice": 39.99,
+    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=400&fit=crop",
+    "creator": "MechLab",
+    "category": "Robotics",
+    "isPromotion": true,
+    "discount": 43
+  },
+  {
+    "id": "p3",
+    "name": "Crystal Geode Lamp",
+    "price": 18.99,
+    "originalPrice": 32.99,
+    "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop",
+    "creator": "LightWorks",
+    "category": "Decor",
+    "isPromotion": true,
+    "discount": 42
+  },
+  {
+    "id": "p4",
+    "name": "Cosplay Armor Set",
+    "price": 45.99,
+    "originalPrice": 79.99,
+    "image": "https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?w=400&h=400&fit=crop",
+    "creator": "ArmorSmith",
+    "category": "Cosplay",
+    "isPromotion": true,
+    "discount": 43
+  }
+]

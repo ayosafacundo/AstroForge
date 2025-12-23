@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "name": "Articulated Dragon - Flexible Print",
+    "price": 12.99,
+    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=200&fit=crop",
+    "creator": "DragonForge",
+    "quantity": 1
+  },
+  {
+    "id": "2",
+    "name": "Mechanical Gear Clock",
+    "price": 24.99,
+    "image": "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=200&h=200&fit=crop",
+    "creator": "ClockWorks",
+    "quantity": 1
+  }
+]

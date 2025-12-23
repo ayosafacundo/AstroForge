@@ -1,0 +1,284 @@
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "@fontsource/orbitron/400.css";
+@import "@fontsource/orbitron/700.css";
+@import "@fontsource/orbitron/900.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Blueprint Design System */
+@layer base {
+  :root {
+    /* Blueprint Core Colors */
+    --background: 220 60% 8%;
+    --foreground: 195 100% 75%;
+
+    /* Blueprint Grid */
+    --blueprint-grid: 195 50% 20%;
+    --blueprint-line: 195 80% 50%;
+    --blueprint-glow: 195 100% 60%;
+    --blueprint-annotation: 195 60% 45%;
+
+    /* Card surfaces */
+    --card: 220 55% 12%;
+    --card-foreground: 195 100% 75%;
+
+    /* Popover */
+    --popover: 220 55% 10%;
+    --popover-foreground: 195 100% 75%;
+
+    /* Primary - Bright Cyan */
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 60% 8%;
+
+    /* Secondary - Darker Blue */
+    --secondary: 220 50% 18%;
+    --secondary-foreground: 195 80% 70%;
+
+    /* Muted - Subtle grid lines */
+    --muted: 220 40% 15%;
+    --muted-foreground: 195 40% 50%;
+
+    /* Accent - Electric Cyan */
+    --accent: 180 100% 45%;
+    --accent-foreground: 220 60% 8%;
+
+    /* Destructive - Red warning */
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success */
+    --success: 150 80% 45%;
+    --success-foreground: 220 60% 8%;
+
+    /* Warning */
+    --warning: 45 100% 50%;
+    --warning-foreground: 220 60% 8%;
+
+    /* Borders and inputs */
+    --border: 195 50% 25%;
+    --input: 220 50% 15%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.25rem;
+
+    /* Sidebar */
+    --sidebar-background: 220 55% 10%;
+    --sidebar-foreground: 195 100% 75%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 220 60% 8%;
+    --sidebar-accent: 220 50% 18%;
+    --sidebar-accent-foreground: 195 80% 70%;
+    --sidebar-border: 195 50% 20%;
+    --sidebar-ring: 195 100% 50%;
+  }
+
+  .dark {
+    --background: 220 60% 8%;
+    --foreground: 195 100% 75%;
+    --card: 220 55% 12%;
+    --card-foreground: 195 100% 75%;
+    --popover: 220 55% 10%;
+    --popover-foreground: 195 100% 75%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 60% 8%;
+    --secondary: 220 50% 18%;
+    --secondary-foreground: 195 80% 70%;
+    --muted: 220 40% 15%;
+    --muted-foreground: 195 40% 50%;
+    --accent: 180 100% 45%;
+    --accent-foreground: 220 60% 8%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 195 50% 25%;
+    --input: 220 50% 15%;
+    --ring: 195 100% 50%;
+    --sidebar-background: 220 55% 10%;
+    --sidebar-foreground: 195 100% 75%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 220 60% 8%;
+    --sidebar-accent: 220 50% 18%;
+    --sidebar-accent-foreground: 195 80% 70%;
+    --sidebar-border: 195 50% 20%;
+    --sidebar-ring: 195 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Blueprint grid background */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(hsl(var(--blueprint-grid)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--blueprint-grid)) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .blueprint-grid-lg {
+    background-image:
+      linear-gradient(hsl(var(--blueprint-grid)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--blueprint-grid)) 1px, transparent 1px),
+      linear-gradient(hsl(var(--blueprint-grid) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--blueprint-grid) / 0.3) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  }
+}
+
+@layer components {
+  /* Blueprint heading styles */
+  .blueprint-title {
+    font-family: 'Orbitron', sans-serif;
+    @apply uppercase tracking-wider;
+    text-shadow: 0 0 10px hsl(var(--blueprint-glow) / 0.5);
+  }
+
+  /* Blueprint glow effect */
+  .blueprint-glow {
+    text-shadow: 0 0 10px hsl(var(--blueprint-glow) / 0.7),
+                 0 0 20px hsl(var(--blueprint-glow) / 0.5),
+                 0 0 30px hsl(var(--blueprint-glow) / 0.3);
+  }
+
+  .blueprint-box-glow {
+    box-shadow: 0 0 10px hsl(var(--blueprint-glow) / 0.3),
+                0 0 20px hsl(var(--blueprint-glow) / 0.2),
+                inset 0 0 10px hsl(var(--blueprint-glow) / 0.1);
+  }
+
+  /* Dashed blueprint lines */
+  .blueprint-dashed {
+    @apply border-dashed border-blueprint-line;
+  }
+
+  /* Technical annotation style */
+  .blueprint-annotation {
+    @apply text-xs uppercase tracking-widest text-muted-foreground;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Blueprint card */
+  .blueprint-card {
+    @apply bg-card/80 backdrop-blur-sm border border-border rounded;
+    box-shadow: 0 0 15px hsl(var(--blueprint-glow) / 0.1),
+                inset 0 0 20px hsl(var(--background) / 0.5);
+  }
+
+  /* Blueprint button styles */
+  .blueprint-btn {
+    @apply relative overflow-hidden border border-primary bg-transparent text-primary;
+    @apply hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+    @apply font-mono uppercase tracking-wider text-sm;
+  }
+
+  .blueprint-btn::before {
+    content: '';
+    @apply absolute inset-0 bg-primary/10;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .blueprint-btn:hover::before {
+    transform: translateX(0);
+  }
+
+  /* Technical corner decorations */
+  .corner-decoration::before,
+  .corner-decoration::after {
+    content: '';
+    @apply absolute w-4 h-4 border-primary;
+  }
+
+  .corner-decoration::before {
+    @apply top-0 left-0 border-t-2 border-l-2;
+  }
+
+  .corner-decoration::after {
+    @apply bottom-0 right-0 border-b-2 border-r-2;
+  }
+
+  /* Scan line animation */
+  @keyframes scanline {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+
+  .scanline::after {
+    content: '';
+    @apply absolute left-0 right-0 h-px bg-primary/30;
+    animation: scanline 8s linear infinite;
+  }
+
+  /* Pulse glow animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 5px hsl(var(--primary) / 0.5),
+                  0 0 10px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 15px hsl(var(--primary) / 0.7),
+                  0 0 25px hsl(var(--primary) / 0.5);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Typing cursor */
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .cursor-blink::after {
+    content: '|';
+    animation: blink 1s infinite;
+    @apply text-primary ml-1;
+  }
+
+  /* Blueprint tag */
+  .blueprint-tag {
+    @apply inline-flex items-center px-2 py-0.5 text-xs uppercase tracking-wider;
+    @apply border border-dashed border-primary/50 text-primary/80 bg-primary/5;
+    @apply hover:bg-primary/10 hover:border-primary transition-all;
+  }
+
+  /* Grid fade edges */
+  .grid-fade {
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+}
+
+@layer utilities {
+  /* Blueprint specific utilities */
+  .font-technical {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .font-mono-blueprint {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .border-glow {
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+}

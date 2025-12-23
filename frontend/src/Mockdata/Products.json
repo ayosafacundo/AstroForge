@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "name": "Articulated Dragon - Flexible Print",
+    "price": 12.99,
+    "originalPrice": 12.99,
+    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+    "creator": "DragonForge",
+    "category": "Figurines",
+    "isPromotion": false,
+    "discount": 0
+  },
+  {
+    "id": 2,
+    "name": "Mechanical Gear Clock",
+    "price": 24.99,
+    "originalPrice": 24.99,
+    "image": "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=400&h=400&fit=crop",
+    "creator": "ClockWorks",
+    "category": "Mechanical",
+    "isPromotion": false,
+    "discount": 0
+  },
+  {
+    "id": 3,
+    "name": "Geometric Desk Organizer",
+    "price": 8.99,
+    "originalPrice": 8.99,
+    "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop",
+    "creator": "MinimalPrints",
+    "category": "Functional",
+    "isPromotion": false,
+    "discount": 0
+  },
+  {
+    "id": 4,
+    "name": "Sci-Fi Helmet Prop",
+    "price": 34.99,
+    "originalPrice": 44.99,
+    "image": "https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?w=400&h=400&fit=crop",
+    "creator": "PropMaster3D",
+    "category": "Cosplay",
+    "isPromotion": true,
+    "discount": 22
+  }
+]
