@@ -1,0 +1,40 @@
+{
+  "id": 1,
+  "name": "Articulated Dragon - Flexible Print",
+  "description":
+    "This stunning articulated dragon features smooth, flowing movement thanks to its carefully designed ball joints. Perfect for display or as a gift, this print-in-place model requires no assembly and demonstrates the amazing capabilities of 3D printing.",
+  "price": 12.99,
+  "originalPrice": 18.99,
+  "images": [
+    "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=800&fit=crop",
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=800&fit=crop",
+    "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=800&fit=crop"
+  ],
+  "creator": {
+    "name": "DragonForge",
+    "avatar": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop",
+    "followers": 12400,
+    "designs": 89
+  },
+  "category": "Figurines",
+  "tags": ["Dragon", "Articulated", "Print-in-Place", "Fantasy", "Decoration"],
+  "stats": {
+    "downloads": 4521,
+    "likes": 892,
+    "views": 18420,
+    "comments": 156
+  },
+  "rating": 4.8,
+  "reviews": 234,
+  "specifications": {
+    "printTime": "8-12 hours",
+    "material": "PLA / PETG recommended",
+    "supports": "Not required",
+    "infill": "15-20%",
+    "resolution": "0.2mm recommended",
+    "dimensions": "200mm x 80mm x 60mm",
+    "fileFormats": ["STL", "OBJ", "3MF"]
+  },
+  "isPromotion": true,
+  "discount": 32
+}

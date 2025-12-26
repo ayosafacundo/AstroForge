@@ -1,7 +1,7 @@
 import { ArrowRight, Package, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Promotions } from "@/Mockdata/Mockdatatypes";
+import { Promotion } from "@/Mockdata/Mockdatatypes";
 
 export const PromotionCard = ({
   id,
@@ -12,7 +12,7 @@ export const PromotionCard = ({
   image,
   endsAt,
   category,
-}: Promotions) => {
+}: Promotion) => {
   return (
     <div className="group relative blueprint-card overflow-hidden transition-all duration-300 hover:border-primary/50 hover:blueprint-box-glow">
       <div className="flex flex-col md:flex-row">

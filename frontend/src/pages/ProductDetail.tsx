@@ -20,6 +20,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { useState } from "react";
+import { FullProduct } from "@/Mockdata/Mockdatatypes";
 
 // Mock product data
 const mockProduct = {
@@ -87,7 +88,7 @@ const relatedProducts = [
   },
 ];
 
-const ProductDetail = () => {
+const ProductDetail = ({mockdata}: {mockdata: FullProduct}) => {
   const { id } = useParams();
   const [currentImage, setCurrentImage] = useState(0);
   const [isFavorited, setIsFavorited] = useState(false);
