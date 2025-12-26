@@ -3,13 +3,11 @@ services:
     build: ./frontend/
     command: npm run dev
     ports:
-      - 80:5173
+      - ${EXPOSED_PORT:-80}:5173
     volumes:
       - ./frontend/:/usr/src/Astroforge
       - node_modules:/usr/src/app/node_modules
     container_name: Astroforge-frontend
-    environment:
-      - 
 
   Astroforge-backend:
     build: ./backend/
@@ -17,18 +15,19 @@ services:
     volumes:
       - ./backend
     environment:
-      - POSTGRES_USER=dummyuser
-      - POSTGRES_PASSWORD=dummypassword
-      - POSTGRES_DB=dummydb
-
+      - ${POSTGRES_USER:-dummyuser}
+      - ${POSTGRES_PASSWORD:-dummypassword}
+      - ${POSTGRES_DB:-dummydb}
+      - ${POSTGRES_PORT:-5432}
   db:
     image: postgres:18-alpine
     restart: unless-stopped
-    volumes: db:/var/lib/postgresql/data
+    volumes: db:/var/lib/postgresql/
     environment:
-      - POSTGRES_USER=dummyuser
-      - POSTGRES_PASSWORD=dummypassword
-      - POSTGRES_DB=dummydb
+      - ${POSTGRES_USER:-dummyuser}
+      - ${POSTGRES_PASSWORD:-dummypassword}
+      - ${POSTGRES_DB:-dummydb}
+      - ${POSTGRES_PORT:-5432}
 
   redis:
     image: redis:alpine
@@ -36,5 +35,3 @@ services:
   volumes:
     - node_modules
     - db
-
-  network:

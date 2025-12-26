@@ -1,10 +1,11 @@
 import { Layout } from "@/components/layout/Layout";
 import { PromotionCard } from "@/components/cards/PromotionCard";
 import { ProductCard } from "@/components/cards/ProductCard";
-import { Clock, Percent, Package, ArrowRight } from "lucide-react";
+import { Clock, Percent, Package, CircleDollarSign, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import promotionPacks from '@/Mockdata/PromotionPacks.json'; 
 import individualPromotions from '@/Mockdata/individualPromotions.json'; 
+import BlueprintCard from "./UI/Components/BlueprintCard";
 
 const Promotions = () => {
   return (
@@ -27,28 +28,10 @@ const Promotions = () => {
 
         {/* Stats Bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div className="blueprint-card p-4 text-center">
-            <Percent className="w-6 h-6 text-success mx-auto mb-2" />
-            <div className="font-technical text-2xl text-primary">50%</div>
-            <div className="text-xs text-muted-foreground">Max Discount</div>
-          </div>
-          <div className="blueprint-card p-4 text-center">
-            <Package className="w-6 h-6 text-primary mx-auto mb-2" />
-            <div className="font-technical text-2xl text-primary">24</div>
-            <div className="text-xs text-muted-foreground">Active Packs</div>
-          </div>
-          <div className="blueprint-card p-4 text-center">
-            <Clock className="w-6 h-6 text-warning mx-auto mb-2" />
-            <div className="font-technical text-2xl text-primary">7</div>
-            <div className="text-xs text-muted-foreground">Days Left</div>
-          </div>
-          <div className="blueprint-card p-4 text-center">
-            <div className="w-6 h-6 mx-auto mb-2 flex items-center justify-center text-success">
-              $
-            </div>
-            <div className="font-technical text-2xl text-primary">$2,400</div>
-            <div className="text-xs text-muted-foreground">Total Savings</div>
-          </div>
+          <BlueprintCard icon={<Percent className="w-6 h-6 text-success mx-auto mb-2" />} title={"50%"} description={"Max Discount"} />
+          <BlueprintCard icon={<Package className="w-6 h-6 text-primary mx-auto mb-2" />} title={"24"} description={"Active Packs"} />
+          <BlueprintCard icon={<Clock className="w-6 h-6 text-warning mx-auto mb-2" />} title={"7"} description={"Days Left"} />
+          <BlueprintCard icon={<CircleDollarSign className="w-6 h-6 text-success mx-auto mb-2" />} title={"$2,400"} description={"Total Savings"} />
         </div>
 
         {/* Bundle Packs */}

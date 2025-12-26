@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "author": {
+      "name": "DragonForge",
+      "username": "@dragonforge",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop",
+      "verified": true
+    },
+    "content": "Just finished my latest articulated dragon design! 🐉 45 segments of pure printable awesomeness. Link in bio. #3Dprinting #ArtDesign",
+    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
+    "likes": 342,
+    "comments": 56,
+    "reposts": 89,
+    "timestamp": "2h",
+    "isLiked": false
+  },
+  {
+    "id": 2,
+    "author": {
+      "name": "MechLab Studio",
+      "username": "@mechlab",
+      "avatar": "https://images.unsplash.com/photo-1599566150163-29194dcabd36?w=100&h=100&fit=crop",
+      "verified": true
+    },
+    "content": "Pro tip: When printing mechanical parts, use 0.12mm layer height for smoother gear action. Your mechanisms will thank you! 🔧⚙️",
+    "likes": 567,
+    "comments": 123,
+    "reposts": 234,
+    "timestamp": "4h",
+    "isLiked": true
+  },
+  {
+    "id": 3,
+    "author": {
+      "name": "PrintNewbie",
+      "username": "@printnewbie",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+      "verified": false
+    },
+    "content": "My first successful print! It's not perfect but I'm so happy it worked 😭 Thanks to this amazing community for all the help!",
+    "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop",
+    "likes": 1243,
+    "comments": 245,
+    "reposts": 45,
+    "timestamp": "6h",
+    "isLiked": false
+  },
+  {
+    "id": 4,
+    "author": {
+      "name": "RoboBuilder",
+      "username": "@robobuilder",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+      "verified": true
+    },
+    "content": "Working on a new hexapod robot chassis. 18 servos, fully 3D printed joints. Who wants to see the design files? 🤖",
+    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
+    "likes": 892,
+    "comments": 178,
+    "reposts": 312,
+    "timestamp": "8h",
+    "isLiked": false
+  }
+]
