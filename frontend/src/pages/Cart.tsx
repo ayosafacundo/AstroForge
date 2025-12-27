@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { Trash2, Minus, Plus, ShoppingCart, ArrowRight, Tag } from "lucide-react";
 import { useState } from "react";
-import initialCartItems from "@/Mockdata/CartItems.json"
+import initialCartItems from "@/Mockdata/data/CartItems.json"
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState(initialCartItems);

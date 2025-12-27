@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useLocation } from "react-router-dom";
 import {
   Search,
   SlidersHorizontal,
@@ -23,65 +23,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
+import { SearchedProducts } from '@/Mockdata';
 
 // Mock search results
-const mockResults = [
-  {
-    id: "1",
-    name: "Articulated Dragon - Flexible Print",
-    price: 12.99,
-    originalPrice: 18.99,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
-    creator: "DragonForge",
-    category: "Figurines",
-    isPromotion: true,
-    discount: 32,
-  },
-  {
-    id: "2",
-    name: "Mechanical Gear Clock",
-    price: 24.99,
-    image: "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=400&h=400&fit=crop",
-    creator: "ClockWorks",
-    category: "Mechanical",
-  },
-  {
-    id: "3",
-    name: "Geometric Desk Organizer",
-    price: 8.99,
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop",
-    creator: "MinimalPrints",
-    category: "Functional",
-  },
-  {
-    id: "4",
-    name: "Sci-Fi Helmet Prop",
-    price: 34.99,
-    originalPrice: 44.99,
-    image: "https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?w=400&h=400&fit=crop",
-    creator: "PropMaster3D",
-    category: "Cosplay",
-    isPromotion: true,
-    discount: 22,
-  },
-  {
-    id: "5",
-    name: "Crystal Lamp Design",
-    price: 12.99,
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop",
-    creator: "LightWorks",
-    category: "Decor",
-  },
-  {
-    id: "6",
-    name: "Robot Arm Kit",
-    price: 29.99,
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=400&fit=crop",
-    creator: "MechLab",
-    category: "Robotics",
-  },
-];
-
 const categories = [
   "All Categories",
   "Figurines",
@@ -97,14 +41,18 @@ const categories = [
 const popularTags = ["Dragon", "Articulated", "Mechanical", "Robot", "Cosplay", "Decor", "Functional"];
 
 const SearchResults = () => {
+  const pathname = useLocation().pathname.toLowerCase().slice(1).split("/");
+  const category = pathname[0] == "discover" ? pathname[1].charAt(0).toUpperCase() + pathname[1].slice(1) : ""; // make first character of pathname (/discover/robotics) uppercase
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
   const tag = searchParams.get("tag") || "";
+  const promotion = searchParams.get("promotion") || "";
+  const theme = searchParams.get("theme") || "";
 
   const [searchQuery, setSearchQuery] = useState(query || tag);
   const [showFilters, setShowFilters] = useState(false);
   const [priceRange, setPriceRange] = useState([0, 100]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([categories[categories.indexOf(category)]]); // Get the category from /discover/<category>
   const [onlyPromotions, setOnlyPromotions] = useState(false);
   const [sortBy, setSortBy] = useState("relevance");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -237,7 +185,7 @@ const SearchResults = () => {
                   {query || tag ? `Results for "${query || tag}"` : "All Products"}
                 </h2>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {mockResults.length} products found
+                  {SearchedProducts.length} products found
                 </p>
               </div>
 
@@ -319,7 +267,7 @@ const SearchResults = () => {
                   : "space-y-4"
               }
             >
-              {mockResults.map((product, index) => (
+              {SearchedProducts.map((product, index) => (
                 <div
                   key={product.id}
                   className="animate-fade-in"

@@ -102,3 +102,15 @@ export interface FullProduct {
   isPromotion: boolean;
   discount: number;
 }
+
+export interface SearchedProduct {
+  id: number;
+  name: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  creator: string;
+  category: string;
+  isPromotion: boolean;
+  discount: number;
+}

@@ -1,8 +1,8 @@
 import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
-import featuredProducts from "@/Mockdata/Products.json";
-import featuredPromotions from "@/Mockdata/Promotions.json";
-import categoryPromotions from "@/Mockdata/CategoryPromotions.json"
+import featuredProducts from "@/Mockdata/data/Products.json";
+import featuredPromotions from "@/Mockdata/data/Promotions.json";
+import categoryPromotions from "@/Mockdata/data/CategoryPromotions.json"
 import Dashscreen from "./UI/Dashscreen";
 import Featured from "./UI/Featured";
 import Product from "./UI/Products";

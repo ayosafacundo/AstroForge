@@ -3,8 +3,8 @@ import { PromotionCard } from "@/components/cards/PromotionCard";
 import { ProductCard } from "@/components/cards/ProductCard";
 import { Clock, Percent, Package, CircleDollarSign, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import promotionPacks from '@/Mockdata/PromotionPacks.json'; 
-import individualPromotions from '@/Mockdata/individualPromotions.json'; 
+import promotionPacks from '@/Mockdata/data/PromotionPacks.json'; 
+import individualPromotions from '@/Mockdata/data/individualPromotions.json'; 
 import BlueprintCard from "./UI/Components/BlueprintCard";
 
 const Promotions = () => {
