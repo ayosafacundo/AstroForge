@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import featuredProducts from "@/Mockdata/data/Products.json";
 import featuredPromotions from "@/Mockdata/data/Promotions.json";
 import categoryPromotions from "@/Mockdata/data/CategoryPromotions.json"
-import Dashscreen from "./UI/Dashscreen";
-import Featured from "./UI/Featured";
-import Product from "./UI/Products";
-import Category from "./UI/Category";
+import Dashscreen from "./Components/Dashscreen";
+import Featured from "./Components/Featured";
+import Product from "./Components/Products";
+import Category from "./Components/Category";
 import Footer from "@/components/layout/Footer";
 
 const Index = () => {

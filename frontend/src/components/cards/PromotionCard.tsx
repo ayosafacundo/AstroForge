@@ -30,7 +30,7 @@ export const PromotionCard = ({
           </div>
 
           {/* Grid overlay */}
-          <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
+          {/* <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" /> */}
         </div>
 
         {/* Content Section */}
@@ -59,7 +59,7 @@ export const PromotionCard = ({
             </div>
 
             {/* CTA */}
-            <Link to={`/promotions/${id}`}>
+            <Link to={`/search?cat=${category.toLowerCase()}&prom=true`}>
               <Button variant="blueprint" className="w-full sm:w-auto group/btn">
                 View Pack
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />

@@ -1,11 +1,11 @@
 import { Layout } from "@/components/layout/Layout";
 import { PromotionCard } from "@/components/cards/PromotionCard";
-import { ProductCard } from "@/components/cards/ProductCard";
+import { ProductCard } from "@/pages/Search/Components/ProductCard";
 import { Clock, Percent, Package, CircleDollarSign, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import promotionPacks from '@/Mockdata/data/PromotionPacks.json'; 
 import individualPromotions from '@/Mockdata/data/individualPromotions.json'; 
-import BlueprintCard from "./UI/Components/BlueprintCard";
+import BlueprintCard from "./Components/BlueprintCard";
 
 const Promotions = () => {
   return (

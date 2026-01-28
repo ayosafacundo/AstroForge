@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { category } from "@/Mockdata/Mockdatatypes";
 import MainCategories from "./UI/MainCategories.tsx";
+import React from "react";
 
 const icons = {
   "Gamepad2": Gamepad2,
@@ -97,4 +98,4 @@ const Categories = ({categories}: {categories: category[]}) => {
   );
 };
 
-export default Categories;
+export default React.memo(Categories);

@@ -1,4 +1,5 @@
 import { ArrowRight, LucideIcon } from "lucide-react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 export interface CategoryCardProps {
@@ -10,7 +11,7 @@ export interface CategoryCardProps {
   image: string;
 }
 
-export const CategoryCard = ({
+export const CategoryCard = React.memo(({
   id,
   name,
   description,
@@ -20,7 +21,7 @@ export const CategoryCard = ({
 }: CategoryCardProps) => {
   return (
     <Link
-      to={`/categories/${id}`}
+      to={`/search?tag=${id.toLowerCase()}`}
       className="group relative blueprint-card overflow-hidden transition-all duration-300 hover:border-primary/50"
     >
       {/* Background Image */}
@@ -65,8 +66,8 @@ export const CategoryCard = ({
       </div>
 
       {/* Corner marks */}
-      <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors" />
       <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors" />
+      <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors" />
     </Link>
   );
-};
+});

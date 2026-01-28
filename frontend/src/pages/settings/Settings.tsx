@@ -10,11 +10,11 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import Account from "./sections/Account";
-import Notifications from "./sections/Notifications";
-import Privacy from "./sections/Privacy";
-import Billing from "./sections/Billing";
-import Appearance from "./sections/Appearance";
+import Account from "./Sections/Account";
+import Notifications from "./Sections/Notifications";
+import Privacy from "./Sections/Privacy";
+import Billing from "./Sections/Billing";
+import Appearance from "./Sections/Appearance";
 
 const Settings = () => {
   return (

@@ -1,5 +1,4 @@
 import { Layout } from "@/components/layout/Layout";
-import { ProductCard } from "@/components/cards/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -12,7 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useSearchParams, Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useQueryState, parseAsArrayOf, parseAsString, Options, createParser, parseAsInteger } from 'nuqs';
 import {
   Search,
   SlidersHorizontal,
@@ -22,8 +22,12 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchedProducts } from '@/Mockdata';
+import SearchResult from "./Components/SearchResult";
+import { useQuery } from "@tanstack/react-query";
+import { Product } from "@/Mockdata/Mockdatatypes";
+import { min } from "date-fns";
 
 // Mock search results
 const categories = [
@@ -40,38 +44,144 @@ const categories = [
 
 const popularTags = ["Dragon", "Articulated", "Mechanical", "Robot", "Cosplay", "Decor", "Functional"];
 
+const parseAsFromTo = createParser({
+  parse: value => {
+    const [min = null, max = null] = value.split('~').map(parseAsInteger.parse)
+    if (min === 0) return null
+    if (max === min) return { eq: min }
+    return { gte: min, lte: max }
+  },
+  serialize: value => {
+    return value.eq !== undefined ? String(value.eq) : `${value.gte}~${value.lte}`
+  }
+})
+
 const SearchResults = () => {
   const pathname = useLocation().pathname.toLowerCase().slice(1).split("/");
-  const category = pathname[0] == "discover" ? pathname[1].charAt(0).toUpperCase() + pathname[1].slice(1) : ""; // make first character of pathname (/discover/robotics) uppercase
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get("q") || "";
-  const tag = searchParams.get("tag") || "";
-  const promotion = searchParams.get("promotion") || "";
-  const theme = searchParams.get("theme") || "";
-
-  const [searchQuery, setSearchQuery] = useState(query || tag);
-  const [showFilters, setShowFilters] = useState(false);
-  const [priceRange, setPriceRange] = useState([0, 100]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([categories[categories.indexOf(category)]]); // Get the category from /discover/<category>
-  const [onlyPromotions, setOnlyPromotions] = useState(false);
-  const [sortBy, setSortBy] = useState("relevance");
+  const [category, setCategory] = useQueryState('cat', parseAsArrayOf(parseAsString).withOptions({ shallow: false, limitUrlUpdates: {method: "debounce", timeMs: 500 }}));
+  const [tag, setTag] = useQueryState('tag', parseAsArrayOf(parseAsString).withOptions({ shallow: false, limitUrlUpdates: {method: "debounce", timeMs: 500 } }));
+  const [priceRange, setPriceRange] = useQueryState('pr', parseAsFromTo.withOptions({ shallow: false, limitUrlUpdates: {method: "debounce", timeMs: 500 } }));
+  const [query, setQuery] = useQueryState('q', parseAsString.withOptions({ shallow: false }));
+  const [promotion, setPromotion] = useQueryState('prom', parseAsString.withOptions({ shallow: false, limitUrlUpdates: {method: "debounce", timeMs: 500 } }));
+  const [theme, setTheme] = useQueryState('theme', parseAsString.withOptions({ shallow: false }));
+  
+  useEffect(() => {
+    const pathcategory = pathname[0] == "discover" ? pathname[1].charAt(0).toUpperCase() + pathname[1].slice(1) : ""; // make first character of pathname (/discover/<robotics>) uppercase
+    if (pathcategory != "" && categories.indexOf(pathcategory) != -1) addToQuery(categories[categories.indexOf(pathcategory)]?.toLowerCase(), setCategory);
+  }, [])
+  const [showFilters, setShowFilters] = useState<boolean>(false);
+  const [sortBy, setSortBy] = useState<string>("relevance");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  const toggleCategory = (cat: string) => {
-    setSelectedCategories((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
-  };
+  const data = useQuery({
+    queryKey: ['searchResults', { category, tag, priceRange, query, promotion, theme, onlyPromotions: promotion, sortBy }],
+    queryFn: async () => {
+      // Simulate fetching data from an API based on the filters
+      let results: Product[] = SearchedProducts;
+      console.log("Fetching!");
+      if (category && category.length > 0) {
+        results = results.filter(product => category.includes(product.category.toLowerCase()));
+      }
+
+      if (tag && tag.length > 0) {
+        results = results.filter(product => tag.some(t => product.tags?.map(pt => pt.toLowerCase()).includes(t)));
+      }
+      if (priceRange) {
+        results = results.filter(product => {
+          const price = product.price;
+          if (priceRange.gte !== undefined && price < priceRange.gte) return false;
+          if (priceRange.lte !== undefined && price > priceRange.lte) return false;
+          return true;
+        });
+      }
+      if (query) {
+        results = results.filter(product => product.name.toLowerCase().includes(query.toLowerCase()));
+      }
+      if (promotion) {
+        results = results.filter(product => product.isPromotion);
+      }
+      // Sorting
+      switch (sortBy) {
+        case "price-low":
+          results = results.sort((a, b) => a.price - b.price);
+          break;
+        case "price-high":
+          results = results.sort((a, b) => b.price - a.price);
+          break;
+        case "newest":
+          results = results.sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());
+          break;
+        case "popular":
+          results = results.sort((a, b) => b.popularity - a.popularity);
+          break;
+        // 'relevance' sorting can be customized as needed
+      }
+
+      return results;
+    }});
+
+
+  const addToQuery = (item: string, query: (value: string[] | ((old: string[]) => string[]), options?: Options) => Promise<URLSearchParams>) => {
+    let nitem = item.toLowerCase();
+    query((prev) => {
+      if (prev == null) {
+        return [nitem]
+      } else if (prev.includes(nitem)) {
+        let ret = prev.filter((c) => c !== nitem);
+        if (ret.length == 0) return null
+        return ret;
+      } else {
+        return [...prev, nitem]
+      }
+    })
+  }
+
+  const setSearch = (search: string) => {
+    const searchQuery = search.trim().split(" ")
+    for (let i = 0; i < searchQuery.length; i++) {
+      switch (searchQuery[i].charAt(0)) {
+        case "#":
+          let tagValue = searchQuery[i].slice(1).toLowerCase();
+          addToQuery(tagValue, setTag);
+          break;
+        case "$":
+          let priceValue = searchQuery[i].slice(1).split("-");
+          if (priceValue.length == 2) {
+            let gte = parseInt(priceValue[0]);
+            let lte = parseInt(priceValue[1]);
+            if (!isNaN(gte) && !isNaN(lte)) {
+              setPriceRange({ gte, lte });
+            }
+          } else if (priceValue.length == 1) {
+            let lte = parseInt(priceValue[0]);
+            if (!isNaN(lte)) {
+              setPriceRange({ lte, gte: 0 });
+            }
+          }
+        default:
+          // normal search term
+          break;
+      }
+    }
+
+    if (search.trim() === "") { 
+      setQuery(null); 
+      return;
+    } 
+    setQuery(search);
+  }
 
   const clearFilters = () => {
-    setSelectedCategories([]);
-    setPriceRange([0, 100]);
-    setOnlyPromotions(false);
+    setCategory(null);
+    setTag(null);
+    setPriceRange(null);
+    setQuery(null);
+    setPromotion(null);
+    setTheme(null);
   };
 
   const activeFiltersCount =
-    selectedCategories.length + (onlyPromotions ? 1 : 0) + (priceRange[0] > 0 || priceRange[1] < 100 ? 1 : 0);
-
+    (category ? category.length : 0) + (promotion == "true" ? 1 : 0) + (priceRange ? (priceRange.lte > 0 || priceRange.gte < 100 ? 1 : 0) : 0);
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
@@ -83,13 +193,13 @@ const SearchResults = () => {
               <Input
                 type="text"
                 placeholder="Search for 3D models..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                value={query || ""}
+                onChange={(e) => setSearch(e.target.value)}
                 className="pl-12 h-12 bg-background border-border"
               />
             </div>
             <Button variant="blueprint" size="lg">
-              <Search className="w-5 h-5 mr-2" />
+              <Search className="w-5 h-5 mr-2"/>
               Search
             </Button>
           </div>
@@ -98,16 +208,16 @@ const SearchResults = () => {
           <div className="flex flex-wrap gap-2 mt-4">
             <span className="text-sm text-muted-foreground mr-2">Popular:</span>
             {popularTags.map((t) => (
-              <Link key={t} to={`/search?tag=${t.toLowerCase()}`}>
+              <span key={t} onClick={() => addToQuery(t, setTag)}>
                 <Badge
                   variant="secondary"
                   className={`cursor-pointer hover:bg-primary/20 ${
-                    t.toLowerCase() === tag.toLowerCase() ? "bg-primary/20 border-primary" : ""
+                    tag?.includes(t.toLowerCase()) ? "bg-primary/20 border-primary" : ""
                   }`}
                 >
                   #{t}
                 </Badge>
-              </Link>
+              </span>
             ))}
           </div>
         </div>
@@ -124,6 +234,21 @@ const SearchResults = () => {
                   </Button>
                 )}
               </div>
+              
+              {/* Tags */}
+              <div className="mb-6">
+                <h4 className="text-sm font-medium mb-3">Tags</h4>
+                <div className="space-y-2">
+                  {tag && tag.map((cat) => (
+                  <Badge key={cat} variant="outline" className="gap-1">
+                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                    <X
+                      className="w-3 h-3 cursor-pointer"
+                      onClick={() => addToQuery(cat.toLowerCase(), setTag)}
+                    />
+                  </Badge>))}
+                </div>
+              </div>
 
               {/* Categories */}
               <div className="mb-6">
@@ -132,8 +257,8 @@ const SearchResults = () => {
                   {categories.slice(1).map((cat) => (
                     <label key={cat} className="flex items-center gap-2 cursor-pointer group">
                       <Checkbox
-                        checked={selectedCategories.includes(cat)}
-                        onCheckedChange={() => toggleCategory(cat)}
+                        checked={category != null ? category.includes(cat.toLowerCase()) : false}
+                        onCheckedChange={() => addToQuery(cat, setCategory)}
                       />
                       <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                         {cat}
@@ -147,15 +272,15 @@ const SearchResults = () => {
               <div className="mb-6">
                 <h4 className="text-sm font-medium mb-3">Price Range</h4>
                 <Slider
-                  value={priceRange}
-                  onValueChange={setPriceRange}
-                  max={100}
+                  value={priceRange ? [priceRange.gte,priceRange.lte] : [0, 500]}
+                  onValueChange={([min, max]) => {setPriceRange({gte:min, lte:max})}}
+                  max={500}
                   step={1}
                   className="mb-2"
                 />
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <span>${priceRange[0]}</span>
-                  <span>${priceRange[1]}</span>
+                  <span>${priceRange ? priceRange.gte : 0}</span>
+                  <span>${priceRange ? priceRange.lte : 500}</span>
                 </div>
               </div>
 
@@ -163,8 +288,8 @@ const SearchResults = () => {
               <div className="mb-6">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <Checkbox
-                    checked={onlyPromotions}
-                    onCheckedChange={(checked) => setOnlyPromotions(checked as boolean)}
+                    checked={promotion == "true"}
+                    onCheckedChange={(checked) => checked ? setPromotion(""+checked) : setPromotion(null)}
                   />
                   <span className="text-sm">Only show promotions</span>
                 </label>
@@ -235,30 +360,6 @@ const SearchResults = () => {
               </div>
             </div>
 
-            {/* Active Filters */}
-            {(selectedCategories.length > 0 || onlyPromotions) && (
-              <div className="flex flex-wrap gap-2 mb-6">
-                {selectedCategories.map((cat) => (
-                  <Badge key={cat} variant="outline" className="gap-1">
-                    {cat}
-                    <X
-                      className="w-3 h-3 cursor-pointer"
-                      onClick={() => toggleCategory(cat)}
-                    />
-                  </Badge>
-                ))}
-                {onlyPromotions && (
-                  <Badge variant="outline" className="gap-1">
-                    Promotions only
-                    <X
-                      className="w-3 h-3 cursor-pointer"
-                      onClick={() => setOnlyPromotions(false)}
-                    />
-                  </Badge>
-                )}
-              </div>
-            )}
-
             {/* Results Grid */}
             <div
               className={
@@ -267,16 +368,8 @@ const SearchResults = () => {
                   : "space-y-4"
               }
             >
-              {SearchedProducts.map((product, index) => (
-                <div
-                  key={product.id}
-                  className="animate-fade-in"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  <Link to={`/product/${product.id}`}>
-                    <ProductCard {...product} />
-                  </Link>
-                </div>
+              {data?.data?.map((product, index) => (
+                <SearchResult product={product} index={index} addToQuery={addToQuery} setCategory={setCategory}/>
               ))}
             </div>
 

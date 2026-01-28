@@ -1,0 +1,50 @@
+{
+  "product_info": {
+    "id": "number",
+    "name": "string",
+    "slug": "string",
+    "description": "string",
+    "category": "string",
+    "tags": "string[]",
+    "created_at": "string",
+    "updated_at": "string"
+  },
+  "pricing": {
+    "price": "number",
+    "original_price": "number",
+    "currency_code": "string",
+    "discount_percentage": "number",
+    "is_promotion": "boolean"
+  },
+  "creator": {
+    "creator_id": "number",
+    "name": "string",
+    "avatar_url": "string",
+    "followers_count": "number",
+    "total_designs": "number"
+  },
+  "media": {
+    "primary_image": "string",
+    "gallery_urls": "string[]"
+  },
+  "specifications": {
+    "print_time": "string",
+    "material_recommendation": "string",
+    "supports_required": "boolean",
+    "infill_percentage": "number",
+    "dimensions_mm": {
+      "length": "number",
+      "width": "number",
+      "height": "number"
+    },
+    "file_formats": "string[]"
+  },
+  "performance_metrics": {
+    "average_rating": "number",
+    "review_count": "number",
+    "download_count": "number",
+    "like_count": "number",
+    "view_count": "number",
+    "comment_count": "number"
+  }
+}

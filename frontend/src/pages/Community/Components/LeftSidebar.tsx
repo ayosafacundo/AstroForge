@@ -1,4 +1,4 @@
-import { TrendingTopics } from "@/Mockdata/Mockdatatypes";
+import { TrendingTopic } from "@/Mockdata/Mockdatatypes";
 import {   
     TrendingUp,
     MessageCircle,
@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 
-export default function LeftSidebar({trendingTopics}:{trendingTopics: TrendingTopics[]}) {
+export default function LeftSidebar({trendingTopics}:{trendingTopics: TrendingTopic[]}) {
     return (
         <aside className="lg:col-span-3 hidden lg:block">
             <div className="sticky top-24 space-y-6">

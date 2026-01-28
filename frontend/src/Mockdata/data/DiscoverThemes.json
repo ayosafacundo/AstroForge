@@ -1,0 +1,92 @@
+[
+  {
+    "id": "robotics",
+    "name": "Robotics",
+    "title": "Discover Robotics",
+    "description": "Explore the world of mechanical marvels, from articulated limbs to fully autonomous builds",
+    "bgStyle": "from-cyan-950 via-slate-900 to-blue-950",
+    "accentColor": "text-cyan-400",
+    "icon": "Cpu",
+    "itemCount": 923,
+    "featured": [
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?w=300&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": "embroidery",
+    "name": "Embroidery",
+    "title": "Discover Embroidery",
+    "description": "Where traditional craft meets modern technology. Hoops, frames, and tools for the fiber arts",
+    "bgStyle": "from-rose-950 via-pink-950 to-purple-950",
+    "accentColor": "text-rose-400",
+    "icon": "Scissors",
+    "itemCount": 456,
+    "featured": [
+      "https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=300&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": "art",
+    "name": "Art & Design",
+    "title": "Discover Art",
+    "description": "Push creative boundaries with sculptural masterpieces and avant-garde designs",
+    "bgStyle": "from-violet-950 via-indigo-950 to-purple-950",
+    "accentColor": "text-violet-400",
+    "icon": "Palette",
+    "itemCount": 1234,
+    "featured": [
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1549887534-1541e9326642?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": "mechanical",
+    "name": "Mechanical",
+    "title": "Discover Mechanical",
+    "description": "Gears, clockwork, and kinetic wonders. Engineering excellence in every layer",
+    "bgStyle": "from-amber-950 via-orange-950 to-yellow-950",
+    "accentColor": "text-amber-400",
+    "icon": "Cog",
+    "itemCount": 567,
+    "featured": [
+      "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1504222490345-c075b6008014?w=300&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": "fantasy",
+    "name": "Fantasy",
+    "title": "Discover Fantasy",
+    "description": "Dragons, castles, and magical realms brought to life through the power of 3D printing",
+    "bgStyle": "from-emerald-950 via-teal-950 to-cyan-950",
+    "accentColor": "text-emerald-400",
+    "icon": "Sparkles",
+    "itemCount": 892,
+    "featured": [
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300&h=300&fit=crop"
+    ]
+  },
+  {
+    "id": "gaming",
+    "name": "Gaming",
+    "title": "Discover Gaming",
+    "description": "Level up your tabletop experience with custom dice, miniatures, and accessories",
+    "bgStyle": "from-red-950 via-orange-950 to-amber-950",
+    "accentColor": "text-red-400",
+    "icon": "Gamepad2",
+    "itemCount": 1567,
+    "featured": [
+      "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1606115757624-6b9bfe9fa5e4?w=300&h=300&fit=crop"
+    ]
+  }
+]

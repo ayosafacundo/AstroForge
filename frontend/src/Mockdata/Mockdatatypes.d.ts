@@ -3,12 +3,51 @@ export interface Product {
     id: number;
     name: string;
     price: number;
-    originalPrice: number;
+    originalPrice?: number;
     image: string;
     creator: string;
     category: string;
-    isPromotion: boolean;
-    discount: number
+    isPromotion?: boolean;
+    discount?: number;
+    tags?: string[];
+    dateAdded?: string;
+    popularity?: number;
+}
+
+export interface FullProduct {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  originalPrice: number;
+  images: string[];
+  creator: {
+    name: string;
+    avatar: string;
+    followers: number;
+    designs: number;
+  }
+  category: string;
+  tags: string[];
+  stats: {
+    downloads: number;
+    likes: number;
+    views: number;
+    comments: number;
+  }
+  rating: number;
+  reviews: number;
+  specifications: {
+    printTime: string;
+    material: string;
+    supports: string;
+    infill: string;
+    resolution: string;
+    dimensions: string;
+    fileFormats: string[];
+  }
+  isPromotion: boolean;
+  discount: number;
 }
 
 export interface Promotion {
@@ -67,50 +106,14 @@ export interface SuggestedUser {
   avatar: string;
 }
 
-export interface FullProduct {
-  id: number;
+export interface DiscoverTheme {
+  id: string;
   name: string;
+  title: string;
   description: string;
-  price: number;
-  originalPrice: number;
-  images: string[];
-  creator: {
-    name: string;
-    avatar: string;
-    followers: number;
-    designs: number;
-  }
-  category: string;
-  tags: string[];
-  stats: {
-    downloads: number;
-    likes: number;
-    views: number;
-    comments: number;
-  }
-  rating: number;
-  reviews: number;
-  specifications: {
-    printTime: string;
-    material: string;
-    supports: string;
-    infill: string;
-    resolution: string;
-    dimensions: string;
-    fileFormats: string[];
-  }
-  isPromotion: boolean;
-  discount: number;
-}
-
-export interface SearchedProduct {
-  id: number;
-  name: string;
-  price: number;
-  originalPrice: number;
-  image: string;
-  creator: string;
-  category: string;
-  isPromotion: boolean;
-  discount: number;
+  bgStyle: string;
+  accentColor: string;
+  icon: string;
+  itemCount: number;
+  featured: string[];
 }

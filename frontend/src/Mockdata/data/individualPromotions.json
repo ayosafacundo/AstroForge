@@ -1,6 +1,6 @@
 [
   {
-    "id": "p1",
+    "id": 1,
     "name": "Articulated Dragon XL",
     "price": 15.99,
     "originalPrice": 29.99,
@@ -11,7 +11,7 @@
     "discount": 47
   },
   {
-    "id": "p2",
+    "id": 2,
     "name": "Mechanical Spider Bot",
     "price": 22.99,
     "originalPrice": 39.99,
@@ -22,7 +22,7 @@
     "discount": 43
   },
   {
-    "id": "p3",
+    "id": 3,
     "name": "Crystal Geode Lamp",
     "price": 18.99,
     "originalPrice": 32.99,
@@ -33,7 +33,7 @@
     "discount": 42
   },
   {
-    "id": "p4",
+    "id": 4,
     "name": "Cosplay Armor Set",
     "price": 45.99,
     "originalPrice": 79.99,

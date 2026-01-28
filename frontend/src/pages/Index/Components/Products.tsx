@@ -1,4 +1,4 @@
-import { ProductCard } from "@/components/cards/ProductCard";
+import { ProductCard } from "@/pages/Search/Components/ProductCard";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";

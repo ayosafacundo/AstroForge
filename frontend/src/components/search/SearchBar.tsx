@@ -8,6 +8,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Slider } from "@/components/ui/slider";
+import { useNavigate } from "react-router-dom";
 
 const popularTags = [
   "Figurines",
@@ -21,10 +22,12 @@ const popularTags = [
 ];
 
 export const SearchBar = () => {
+  const priceRangeMax = 500
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [priceRange, setPriceRange] = useState([0, 500]);
+  const [priceRange, setPriceRange] = useState([0, priceRangeMax]);
   const [onlyPromotions, setOnlyPromotions] = useState(false);
 
   const toggleTag = (tag: string) => {
@@ -32,6 +35,39 @@ export const SearchBar = () => {
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key == 'Enter') {
+      onSubmit();
+    }
+  }
+
+  const onSubmit = () => {
+    let query:{
+      q?: string,
+      tag?: string,
+      pr?: string,
+      prom?: string,
+    } = {};
+
+    if (searchQuery) {
+      query["q"] = "q=" + searchQuery;
+    }
+    if (selectedTags.length > 0) {
+      query["tag"] = "tag=" + selectedTags.join(",");
+    }
+    if (priceRange[0] != 0 && priceRange[1] != priceRangeMax) {
+      query["pr"] = "pr=" + priceRange.join("~");
+    }
+    if (onlyPromotions) {
+      query["prom"] = "prom=" + onlyPromotions;
+    }
+    let queryString = "?";
+    for (const key in query) {
+      queryString += query[key] + "&";
+    }
+    navigate("/search" + queryString);
+  }
 
   const clearFilters = () => {
     setSelectedTags([]);
@@ -47,12 +83,14 @@ export const SearchBar = () => {
       <div className="relative group">
         <div className="absolute inset-0 bg-primary/5 rounded blur-xl group-hover:bg-primary/10 transition-all duration-500" />
         <div className="relative flex items-center gap-2 bg-card/80 backdrop-blur-sm border border-border rounded p-2 blueprint-box-glow">
-          <Search className="w-5 h-5 text-muted-foreground ml-2" />
+          <Search className="w-5 h-5 text-muted-foreground ml-2" 
+          />
           <Input
             type="text"
             placeholder="Search 3D models, creators, categories..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => handleKeyPress(e)}
             className="flex-1 border-0 bg-transparent focus-visible:ring-0 text-foreground placeholder:text-muted-foreground"
           />
           
@@ -123,7 +161,7 @@ export const SearchBar = () => {
                   <Slider
                     value={priceRange}
                     onValueChange={setPriceRange}
-                    max={500}
+                    max={priceRangeMax}
                     step={10}
                     className="py-2"
                   />
@@ -153,7 +191,9 @@ export const SearchBar = () => {
             </PopoverContent>
           </Popover>
 
-          <Button variant="default" size="sm">
+          <Button variant="default" size="sm"
+            onClick={onSubmit}
+          >
             Search
           </Button>
         </div>

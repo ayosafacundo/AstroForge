@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { User, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import icon from "@/assets/astroforge-high-resolution-icon-transparent.svg";
 
 const navLinks = [
   { name: "Categories", href: "/categories" },
@@ -21,11 +22,9 @@ export const Navbar = () => {
           {/* Logo and Nav Links */}
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 border-2 border-primary rounded flex items-center justify-center blueprint-box-glow">
-                <span className="font-technical text-primary text-sm">3D</span>
-              </div>
+              <img className="w-8 h-8" src={icon} alt="AstroForge icon" />
               <span className="font-technical text-primary text-lg tracking-wider hidden sm:block">
-                PRINTFORGE
+                ASTROFORGE
               </span>
             </Link>
 
