@@ -38,3 +38,6 @@
 ## Environment & local
 /backend/.env
 /backend/*.local
+
+#Personal scripts
+start_dev*

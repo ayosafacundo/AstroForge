@@ -5,7 +5,7 @@ services:
     ports:
       - ${EXPOSED_PORT:-80}:5173
     volumes:
-      - ./frontend/:/usr/src/Astroforge
+      - ./frontend/:/usr/src/Astroforge-Frontend
       - node_modules:/usr/src/app/node_modules
     container_name: Astroforge-frontend
 
@@ -13,12 +13,8 @@ services:
     build: ./backend/
     container_name: Astroforge-backend
     volumes:
-      - ./backend
-    environment:
-      - ${POSTGRES_USER:-dummyuser}
-      - ${POSTGRES_PASSWORD:-dummypassword}
-      - ${POSTGRES_DB:-dummydb}
-      - ${POSTGRES_PORT:-5432}
+      - ./backend/:/usr/src/Astroforge-Backend
+    
   db:
     image: postgres:18-alpine
     restart: unless-stopped

@@ -1,21 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
 
-type Point struct {
-	x int
-	y int
-}
+	"github.com/joho/godotenv"
+
+	"github.com/ayosafacundo/AstroForge/internal/middleware/logger"
+	"github.com/ayosafacundo/AstroForge/internal/router"
+	"github.com/ayosafacundo/AstroForge/internal/users"
+)
 
 func main() {
-	var x [100]Point
-	for i := 0; i < 10; i++ {
-		for j := 0; j < 10; j++ {
-			x[i*j+i] = Point{i, j}
-		}
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal(".env couldn't be initialized.")
 	}
-	for j := 0; j < 100; j++ {
-		fmt.Println(x[j])
-	}
-
+	users.RegisterFeature()
+	logger.Log("Feature Users added.")
+	server := router.RegisterRoutes()
+	logger.Logf("Routes registered: %d.\n", len(router.Routes))
+	log.Fatal(http.ListenAndServe(":6445", server))
 }
