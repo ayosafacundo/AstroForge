@@ -1,0 +1,14 @@
+product_reviews
+---------------
+id UUID PK
+
+user_id UUID FK users(id)
+product_id UUID FK products(id)
+
+rating INT CHECK(rating BETWEEN 1 AND 5)
+
+content TEXT
+
+created_at TIMESTAMP
+
+UNIQUE(user_id, product_id)

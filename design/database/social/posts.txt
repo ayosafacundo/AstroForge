@@ -1,0 +1,20 @@
+posts
+-----
+id UUID PK
+
+author_id UUID FK users(id)
+
+product_id UUID FK products(id) NULL
+
+content TEXT
+
+visibility TEXT
+    -- public
+    -- followers
+    -- private
+
+created_at TIMESTAMP
+updated_at TIMESTAMP
+deleted_at TIMESTAMP
+
+# If product_id NOT NULL → product post

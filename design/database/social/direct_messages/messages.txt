@@ -1,0 +1,13 @@
+messages
+--------
+id UUID PK
+
+conversation_id UUID FK conversations(id)
+
+sender_id UUID FK users(id)
+
+content TEXT
+
+attachment_url TEXT
+
+created_at TIMESTAMP

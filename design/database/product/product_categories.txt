@@ -1,0 +1,6 @@
+product_categories
+------------------
+product_id UUID FK products(id)
+category_id UUID FK categories(id)
+
+PRIMARY KEY(product_id, category_id)

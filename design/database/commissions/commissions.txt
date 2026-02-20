@@ -1,0 +1,20 @@
+commissions
+-----------
+id UUID PK
+
+client_id UUID FK users(id)
+creator_id UUID FK users(id)
+
+conversation_id UUID FK conversations(id)
+
+product_id UUID FK products(id)
+
+status TEXT
+    -- requested
+    -- accepted
+    -- completed
+    -- delivered
+
+price NUMERIC(10,2)
+
+created_at TIMESTAMP

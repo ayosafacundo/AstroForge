@@ -1,0 +1,19 @@
+version_files
+-------------
+id UUID PK
+version_id UUID FK product_versions(id)
+
+file_url TEXT NOT NULL
+
+file_name TEXT
+file_size BIGINT
+
+file_type TEXT
+    -- STL
+    -- OBJ
+    -- 3MF
+    -- ZIP
+
+checksum TEXT
+
+created_at TIMESTAMP

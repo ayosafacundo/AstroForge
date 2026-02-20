@@ -1,0 +1,10 @@
+reposts
+-------
+user_id UUID FK users(id)
+post_id UUID FK posts(id)
+
+comment TEXT
+
+created_at TIMESTAMP
+
+PRIMARY KEY(user_id, post_id)

@@ -1,0 +1,16 @@
+licenses
+--------
+id UUID PK
+
+product_id UUID FK products(id)
+
+name TEXT
+description TEXT
+
+allows_commercial BOOLEAN
+allows_modification BOOLEAN
+allows_redistribution BOOLEAN
+
+price_modifier NUMERIC(10,2)
+
+created_at TIMESTAMP

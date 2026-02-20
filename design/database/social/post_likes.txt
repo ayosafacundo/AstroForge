@@ -1,0 +1,6 @@
+post_likes
+----------
+user_id UUID FK users(id)
+post_id UUID FK posts(id)
+
+PRIMARY KEY(user_id, post_id)

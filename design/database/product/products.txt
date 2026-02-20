@@ -1,0 +1,37 @@
+products
+--------
+id UUID PK
+
+creator_id UUID FK users(id)
+
+title TEXT NOT NULL
+description TEXT
+
+price NUMERIC(10,2)
+is_free BOOLEAN DEFAULT FALSE
+
+is_physical BOOLEAN DEFAULT FALSE
+
+is_unlisted BOOLEAN DEFAULT FALSE
+is_private BOOLEAN DEFAULT FALSE
+
+license_type_default TEXT
+    -- personal
+    -- commercial
+    -- custom
+
+thumbnail_url TEXT
+
+visibility TEXT
+    -- public
+    -- unlisted
+    -- private
+
+created_at TIMESTAMP
+updated_at TIMESTAMP
+deleted_at TIMESTAMP
+
+INDEX idx_products_creator
+INDEX idx_products_visibility
+INDEX idx_products_created_at
+

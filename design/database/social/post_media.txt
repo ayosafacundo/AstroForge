@@ -1,0 +1,7 @@
+post_media
+----------
+id UUID PK
+post_id UUID FK posts(id)
+
+media_url TEXT
+media_type TEXT

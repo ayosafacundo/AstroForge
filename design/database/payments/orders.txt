@@ -1,0 +1,14 @@
+orders
+------
+id UUID PK
+
+buyer_id UUID FK users(id)
+
+total NUMERIC(10,2)
+
+status TEXT
+    -- pending
+    -- completed
+    -- refunded
+
+created_at TIMESTAMP

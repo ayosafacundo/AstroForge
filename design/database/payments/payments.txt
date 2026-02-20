@@ -1,0 +1,17 @@
+payments
+--------
+id UUID PK
+
+order_id UUID FK orders(id)
+
+provider TEXT
+    -- stripe
+    -- paypal
+
+provider_payment_id TEXT
+
+amount NUMERIC(10,2)
+
+status TEXT
+
+created_at TIMESTAMP

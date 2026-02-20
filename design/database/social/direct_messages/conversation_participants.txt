@@ -1,0 +1,6 @@
+conversation_participants
+-------------------------
+conversation_id UUID FK conversations(id)
+user_id UUID FK users(id)
+
+PRIMARY KEY(conversation_id, user_id)

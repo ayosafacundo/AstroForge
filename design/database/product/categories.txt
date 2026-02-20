@@ -1,0 +1,6 @@
+categories
+----------
+id UUID PK
+name TEXT UNIQUE
+slug TEXT UNIQUE
+parent_id UUID FK categories(id)

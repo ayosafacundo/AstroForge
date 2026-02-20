@@ -1,0 +1,12 @@
+posts(created_at DESC)
+posts(author_id, created_at DESC)
+
+product_ownership(user_id)
+
+product_versions(product_id, is_latest)
+
+messages(conversation_id, created_at)
+
+comments(post_id, created_at)
+
+orders(buyer_id)

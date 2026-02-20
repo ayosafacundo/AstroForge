@@ -1,0 +1,13 @@
+comments
+--------
+id UUID PK
+
+author_id UUID FK users(id)
+
+post_id UUID FK posts(id)
+
+parent_comment_id UUID FK comments(id)
+
+content TEXT
+
+created_at TIMESTAMP

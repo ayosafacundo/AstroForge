@@ -1,0 +1,11 @@
+creator_reviews
+---------------
+id UUID PK
+
+reviewer_id UUID FK users(id)
+creator_id UUID FK users(id)
+
+rating INT
+content TEXT
+
+created_at TIMESTAMP

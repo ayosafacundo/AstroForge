@@ -1,0 +1,9 @@
+user_settings
+-------------
+user_id UUID PK FK users(id)
+
+allow_dms BOOLEAN DEFAULT TRUE
+allow_commissions BOOLEAN DEFAULT TRUE
+show_email BOOLEAN DEFAULT FALSE
+
+created_at TIMESTAMP

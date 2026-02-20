@@ -1,0 +1,10 @@
+collections
+-----------
+id UUID PK
+
+user_id UUID FK users(id)
+
+name TEXT
+is_default BOOLEAN DEFAULT FALSE
+
+created_at TIMESTAMP

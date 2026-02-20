@@ -1,0 +1,7 @@
+product_images
+--------------
+id UUID PK
+product_id UUID FK products(id)
+
+url TEXT
+position INT

@@ -1,0 +1,15 @@
+product_versions
+----------------
+id UUID PK
+
+product_id UUID FK products(id)
+
+version_number TEXT
+changelog TEXT
+
+is_latest BOOLEAN DEFAULT FALSE
+
+created_at TIMESTAMP
+
+INDEX idx_versions_product
+INDEX idx_versions_latest

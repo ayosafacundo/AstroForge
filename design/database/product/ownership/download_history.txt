@@ -1,0 +1,10 @@
+download_history
+----------------
+id UUID PK
+
+user_id UUID FK users(id)
+version_id UUID FK product_versions(id)
+
+downloaded_at TIMESTAMP
+
+ip_address INET

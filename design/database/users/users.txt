@@ -1,0 +1,22 @@
+users
+-----
+id UUID PK
+username CITEXT UNIQUE NOT NULL
+email CITEXT UNIQUE NOT NULL
+password_hash TEXT NOT NULL
+
+display_name TEXT
+bio TEXT
+
+avatar_url TEXT
+banner_url TEXT
+
+is_verified BOOLEAN DEFAULT FALSE
+is_creator BOOLEAN DEFAULT FALSE
+is_banned BOOLEAN DEFAULT FALSE
+
+created_at TIMESTAMP
+updated_at TIMESTAMP
+
+INDEX idx_users_username
+INDEX idx_users_email

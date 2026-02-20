@@ -1,0 +1,7 @@
+conversations
+-------------
+id UUID PK
+
+is_commission BOOLEAN DEFAULT FALSE
+
+created_at TIMESTAMP

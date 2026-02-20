@@ -1,0 +1,10 @@
+order_items
+-----------
+id UUID PK
+
+order_id UUID FK orders(id)
+product_id UUID FK products(id)
+
+license_id UUID FK licenses(id)
+
+price NUMERIC(10,2)

@@ -1,0 +1,10 @@
+version_metadata
+----------------
+version_id UUID PK FK product_versions(id)
+
+print_time_estimate TEXT
+material TEXT
+supports_required BOOLEAN
+infill TEXT
+dimensions TEXT
+resolution TEXT

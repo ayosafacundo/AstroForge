@@ -1,0 +1,14 @@
+promotions
+----------
+id UUID PK
+
+product_id UUID FK products(id)
+
+creator_id UUID FK users(id)
+
+starts_at TIMESTAMP
+ends_at TIMESTAMP
+
+budget NUMERIC(10,2)
+
+created_at TIMESTAMP
