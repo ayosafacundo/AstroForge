@@ -1,0 +1,471 @@
+Project 3DPrintMarketplace {
+  database_type: "PostgreSQL"
+  Note: "Marketplace + Social Network for 3D Models with versioning, licensing, commissions, and Twitter-like system"
+}
+
+////////////////////////////
+//// USERS DOMAIN
+////////////////////////////
+
+Table users {
+  id uuid [pk]
+  username citext [unique, not null]
+  email citext [unique, not null]
+  password_hash text [not null]
+
+  display_name text
+  bio text
+
+  avatar_url text
+  banner_url text
+
+  is_verified boolean
+  is_creator boolean
+  is_banned boolean
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_settings {
+  user_id uuid [pk, ref: > users.id]
+
+  allow_dms boolean
+  allow_commissions boolean
+  show_email boolean
+
+  created_at timestamp
+}
+
+Table user_followers {
+  follower_id uuid [ref: > users.id]
+  following_id uuid [ref: > users.id]
+
+  created_at timestamp
+
+  indexes {
+    (follower_id, following_id) [pk]
+  }
+}
+
+////////////////////////////
+//// CATEGORIES
+////////////////////////////
+
+Table categories {
+  id uuid [pk]
+
+  name text [unique, not null]
+  slug text [unique, not null]
+
+  parent_id uuid [ref: > categories.id]
+
+  created_at timestamp
+}
+
+////////////////////////////
+//// PRODUCTS DOMAIN
+////////////////////////////
+
+Table products {
+  id uuid [pk]
+
+  creator_id uuid [not null, ref: > users.id]
+
+  title text [not null]
+  description text
+
+  price numeric
+  is_free boolean
+
+  is_physical boolean
+
+  visibility text
+
+  thumbnail_url text
+
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table product_images {
+  id uuid [pk]
+
+  product_id uuid [not null, ref: > products.id]
+
+  url text
+  position int
+
+  created_at timestamp
+}
+
+Table product_categories {
+  product_id uuid [ref: > products.id]
+  category_id uuid [ref: > categories.id]
+
+  indexes {
+    (product_id, category_id) [pk]
+  }
+}
+
+////////////////////////////
+//// VERSIONING DOMAIN
+////////////////////////////
+
+Table product_versions {
+  id uuid [pk]
+
+  product_id uuid [not null, ref: > products.id]
+
+  version_number text
+  changelog text
+
+  is_latest boolean
+
+  created_at timestamp
+}
+
+Table version_files {
+  id uuid [pk]
+
+  version_id uuid [not null, ref: > product_versions.id]
+
+  file_url text
+  file_name text
+  file_size bigint
+
+  file_type text
+  checksum text
+
+  created_at timestamp
+}
+
+Table version_metadata {
+  version_id uuid [pk, ref: > product_versions.id]
+
+  print_time_estimate text
+  material text
+  supports_required boolean
+  infill text
+  dimensions text
+  resolution text
+}
+
+////////////////////////////
+//// LICENSES
+////////////////////////////
+
+Table licenses {
+  id uuid [pk]
+
+  product_id uuid [ref: > products.id]
+
+  name text
+  description text
+
+  allows_commercial boolean
+  allows_modification boolean
+  allows_redistribution boolean
+
+  price_modifier numeric
+
+  created_at timestamp
+}
+
+////////////////////////////
+//// OWNERSHIP DOMAIN
+////////////////////////////
+
+Table product_ownership {
+  id uuid [pk]
+
+  user_id uuid [not null, ref: > users.id]
+  product_id uuid [not null, ref: > products.id]
+
+  license_id uuid [ref: > licenses.id]
+
+  acquired_at timestamp
+
+  source text
+
+  indexes {
+    (user_id, product_id) [unique]
+  }
+}
+
+Table download_history {
+  id uuid [pk]
+
+  user_id uuid [ref: > users.id]
+  version_id uuid [ref: > product_versions.id]
+
+  downloaded_at timestamp
+
+  ip_address inet
+}
+
+////////////////////////////
+//// ORDERS DOMAIN
+////////////////////////////
+
+Table orders {
+  id uuid [pk]
+
+  buyer_id uuid [ref: > users.id]
+
+  total numeric
+
+  status text
+
+  created_at timestamp
+}
+
+Table order_items {
+  id uuid [pk]
+
+  order_id uuid [ref: > orders.id]
+  product_id uuid [ref: > products.id]
+
+  license_id uuid [ref: > licenses.id]
+
+  price numeric
+}
+
+Table payments {
+  id uuid [pk]
+
+  order_id uuid [ref: > orders.id]
+
+  provider text
+  provider_payment_id text
+
+  amount numeric
+
+  status text
+
+  created_at timestamp
+}
+
+////////////////////////////
+//// SOCIAL DOMAIN
+////////////////////////////
+
+Table posts {
+  id uuid [pk]
+
+  author_id uuid [ref: > users.id]
+
+  product_id uuid [ref: > products.id]
+
+  content text
+
+  visibility text
+
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table post_media {
+  id uuid [pk]
+
+  post_id uuid [ref: > posts.id]
+
+  media_url text
+  media_type text
+
+  created_at timestamp
+}
+
+Table post_likes {
+  user_id uuid [ref: > users.id]
+  post_id uuid [ref: > posts.id]
+
+  created_at timestamp
+
+  indexes {
+    (user_id, post_id) [pk]
+  }
+}
+
+Table reposts {
+  user_id uuid [ref: > users.id]
+  post_id uuid [ref: > posts.id]
+
+  comment text
+
+  created_at timestamp
+
+  indexes {
+    (user_id, post_id) [pk]
+  }
+}
+
+////////////////////////////
+//// COMMENTS
+////////////////////////////
+
+Table comments {
+  id uuid [pk]
+
+  author_id uuid [ref: > users.id]
+
+  post_id uuid [ref: > posts.id]
+
+  parent_comment_id uuid [ref: > comments.id]
+
+  content text
+
+  created_at timestamp
+}
+
+////////////////////////////
+//// COLLECTIONS DOMAIN
+////////////////////////////
+
+Table collections {
+  id uuid [pk]
+
+  user_id uuid [ref: > users.id]
+
+  name text
+
+  is_default boolean
+
+  created_at timestamp
+}
+
+Table collection_items {
+  collection_id uuid [ref: > collections.id]
+  product_id uuid [ref: > products.id]
+
+  created_at timestamp
+
+  indexes {
+    (collection_id, product_id) [pk]
+  }
+}
+
+////////////////////////////
+//// REVIEWS
+////////////////////////////
+
+Table product_reviews {
+  id uuid [pk]
+
+  user_id uuid [ref: > users.id]
+  product_id uuid [ref: > products.id]
+
+  rating int
+  content text
+
+  created_at timestamp
+
+  indexes {
+    (user_id, product_id) [unique]
+  }
+}
+
+Table creator_reviews {
+  id uuid [pk]
+
+  reviewer_id uuid [ref: > users.id]
+  creator_id uuid [ref: > users.id]
+
+  rating int
+  content text
+
+  created_at timestamp
+}
+
+////////////////////////////
+//// MESSAGING DOMAIN
+////////////////////////////
+
+Table conversations {
+  id uuid [pk]
+
+  is_commission boolean
+
+  created_at timestamp
+}
+
+Table conversation_participants {
+  conversation_id uuid [ref: > conversations.id]
+  user_id uuid [ref: > users.id]
+
+  indexes {
+    (conversation_id, user_id) [pk]
+  }
+}
+
+Table messages {
+  id uuid [pk]
+
+  conversation_id uuid [ref: > conversations.id]
+
+  sender_id uuid [ref: > users.id]
+
+  content text
+
+  attachment_url text
+
+  created_at timestamp
+}
+
+////////////////////////////
+//// COMMISSIONS
+////////////////////////////
+
+Table commissions {
+  id uuid [pk]
+
+  client_id uuid [ref: > users.id]
+  creator_id uuid [ref: > users.id]
+
+  conversation_id uuid [ref: > conversations.id]
+
+  product_id uuid [ref: > products.id]
+
+  status text
+
+  price numeric
+
+  created_at timestamp
+}
+
+////////////////////////////
+//// TIPS
+////////////////////////////
+
+Table tips {
+  id uuid [pk]
+
+  sender_id uuid [ref: > users.id]
+  receiver_id uuid [ref: > users.id]
+
+  amount numeric
+
+  message text
+
+  created_at timestamp
+}
+
+////////////////////////////
+//// PROMOTIONS
+////////////////////////////
+
+Table promotions {
+  id uuid [pk]
+
+  product_id uuid [ref: > products.id]
+  creator_id uuid [ref: > users.id]
+
+  starts_at timestamp
+  ends_at timestamp
+
+  budget numeric
+
+  created_at timestamp
+}

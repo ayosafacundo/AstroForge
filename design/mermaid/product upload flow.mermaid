@@ -1,0 +1,13 @@
+sequenceDiagram
+
+Creator->>API: Upload model
+
+API->>MinIO: Store file
+
+API->>PostgreSQL: Create product
+
+API->>PostgreSQL: Create version
+
+API->>Meilisearch: Index product
+
+API-->>Creator: Success

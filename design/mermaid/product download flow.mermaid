@@ -1,0 +1,13 @@
+sequenceDiagram
+
+User->>API: Request download
+
+API->>PostgreSQL: Check ownership
+
+PostgreSQL-->>API: ownership exists
+
+API->>MinIO: Generate signed URL
+
+API->>PostgreSQL: Insert download_history
+
+API-->>User: signed download URL

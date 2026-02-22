@@ -1,0 +1,26 @@
+flowchart LR
+
+API --> PostgreSQL
+API --> Redis
+API --> MinIO
+API --> Meilisearch
+
+PostgreSQL --> Users
+PostgreSQL --> Products
+PostgreSQL --> Versions
+PostgreSQL --> Posts
+PostgreSQL --> Orders
+PostgreSQL --> Messages
+
+Redis --> FeedCache
+Redis --> SessionCache
+Redis --> RateLimitCache
+
+MinIO --> ModelFiles
+MinIO --> Images
+MinIO --> Avatars
+MinIO --> Attachments
+
+Meilisearch --> ProductSearch
+Meilisearch --> UserSearch
+Meilisearch --> PostSearch

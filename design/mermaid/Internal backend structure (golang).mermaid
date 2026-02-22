@@ -1,0 +1,37 @@
+flowchart TB
+
+Router[HTTP Router]
+
+Router --> AuthHandler
+Router --> UserHandler
+Router --> ProductHandler
+Router --> PostHandler
+Router --> FeedHandler
+Router --> MessageHandler
+Router --> OrderHandler
+
+AuthHandler --> AuthService
+UserHandler --> UserService
+ProductHandler --> ProductService
+PostHandler --> PostService
+FeedHandler --> FeedService
+MessageHandler --> MessageService
+OrderHandler --> OrderService
+
+AuthService --> UserRepository
+UserService --> UserRepository
+ProductService --> ProductRepository
+PostService --> PostRepository
+FeedService --> PostRepository
+MessageService --> MessageRepository
+OrderService --> OrderRepository
+
+UserRepository --> PostgreSQL
+ProductRepository --> PostgreSQL
+PostRepository --> PostgreSQL
+MessageRepository --> PostgreSQL
+OrderRepository --> PostgreSQL
+
+FeedService --> Redis
+ProductService --> MinIO
+ProductService --> Meilisearch

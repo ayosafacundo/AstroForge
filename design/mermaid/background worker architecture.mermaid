@@ -1,0 +1,13 @@
+flowchart TB
+
+API --> Queue[Redis Queue]
+
+Queue --> Worker1[Feed Worker]
+Queue --> Worker2[Search Index Worker]
+Queue --> Worker3[Email Worker]
+Queue --> Worker4[Thumbnail Worker]
+
+Worker1 --> Redis
+Worker2 --> Meilisearch
+Worker3 --> EmailProvider
+Worker4 --> MinIO

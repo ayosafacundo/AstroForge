@@ -1,0 +1,19 @@
+sequenceDiagram
+
+Client->>API: Send commission message
+
+API->>PostgreSQL: Create conversation
+
+Creator->>API: Accept commission
+
+API->>PostgreSQL: Create private product
+
+Creator->>API: Upload files
+
+API->>MinIO: Store files
+
+API->>PostgreSQL: Create version
+
+Client->>API: Purchase commission
+
+API->>PostgreSQL: Grant ownership

@@ -1,0 +1,14 @@
+sequenceDiagram
+
+User->>API: GET /feed
+
+API->>Redis: Check cached feed
+
+alt Cache hit
+Redis-->>API: Return feed
+else Cache miss
+API->>PostgreSQL: Fetch posts
+API->>Redis: Cache feed
+end
+
+API-->>User: Return feed

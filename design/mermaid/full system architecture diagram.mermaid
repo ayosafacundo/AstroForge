@@ -1,0 +1,57 @@
+flowchart TB
+
+%% CLIENTS
+Client[Web App / Mobile App]
+
+%% ENTRY
+Client --> CDN
+CDN --> ReverseProxy
+
+ReverseProxy[Nginx / Caddy]
+
+ReverseProxy --> API
+
+%% API LAYER
+API[Golang API Server]
+
+%% CORE SERVICES
+API --> AuthService
+API --> UserService
+API --> ProductService
+API --> VersionService
+API --> PostService
+API --> FeedService
+API --> CommentService
+API --> LikeService
+API --> FollowService
+API --> CollectionService
+API --> OrderService
+API --> PaymentService
+API --> CommissionService
+API --> MessageService
+API --> TipService
+API --> PromotionService
+API --> DownloadService
+
+%% DATABASE
+API --> PostgreSQL[(PostgreSQL)]
+
+%% CACHE
+API --> Redis[(Redis Cache)]
+
+%% FILE STORAGE
+API --> MinIO[(MinIO Object Storage)]
+
+%% SEARCH
+API --> Meilisearch[(Meilisearch)]
+
+%% PAYMENT PROVIDER
+PaymentService --> Stripe[Stripe / Payment Provider]
+
+%% OPTIONAL WORKERS
+API --> JobQueue[Background Workers]
+
+JobQueue --> PostgreSQL
+JobQueue --> Redis
+JobQueue --> MinIO
+JobQueue --> Meilisearch

@@ -1,0 +1,31 @@
+users
+ ├── user_settings
+ ├── user_followers
+ ├── products
+ │     ├── product_versions
+ │     │       ├── version_files
+ │     │       └── version_metadata
+ │     ├── licenses
+ │     ├── product_reviews
+ │     └── product_images
+ │
+ ├── posts
+ │     ├── post_media
+ │     ├── comments
+ │     ├── post_likes
+ │     └── reposts
+ │
+ ├── conversations
+ │     ├── conversation_participants
+ │     └── messages
+ │
+ ├── collections
+ │     └── collection_items
+ │
+ ├── orders
+ │     ├── order_items
+ │     └── payments
+ │
+ ├── tips
+ ├── commissions
+ └── product_ownership
