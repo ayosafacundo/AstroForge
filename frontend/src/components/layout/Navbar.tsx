@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { User, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import icon from "@/assets/astroforge-high-resolution-icon-transparent.svg";
+import icon from "@/assets/astroforge-high-resolution-Icon-transparent.svg";
 
 const navLinks = [
   { name: "Categories", href: "/categories" },

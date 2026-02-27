@@ -39,5 +39,8 @@
 /backend/.env
 /backend/*.local
 
+## Generated SQLC
+/backend/internal/db/dbgen
+
 #Personal scripts
 start_dev*
