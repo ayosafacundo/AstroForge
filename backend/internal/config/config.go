@@ -16,8 +16,8 @@ type MinioConfig struct {
 	Bucket    string
 }
 
-func Load() Config {
-	return Config{
+func Load() *Config {
+	return &Config{
 		DatabaseURL: os.Getenv("DATABASE_URL"),
 		RedisURL:    os.Getenv("REDIS_URL"),
 		JWTSecret:   os.Getenv("JWT_SECRET"),

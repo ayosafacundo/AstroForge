@@ -42,5 +42,8 @@
 ## Generated SQLC
 /backend/internal/db/dbgen
 
+#Miscelaneous
+.vscode
+
 #Personal scripts
 start_dev*
