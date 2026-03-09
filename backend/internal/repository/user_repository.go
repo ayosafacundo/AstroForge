@@ -3,10 +3,9 @@ package repository
 import (
 	"context"
 	"errors"
-	"fmt"
 
 	db "github.com/ayosafacundo/AstroForge/internal/db/dbgen"
-	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 type UserRepository struct {
@@ -17,43 +16,6 @@ func NewUserRepository(q *db.Queries) *UserRepository {
 	return &UserRepository{q}
 }
 
-type Store struct {
-	*db.Queries
-	connPool *pgxpool.Pool
-}
-
-func NewStore(connPool *pgxpool.Pool) *Store {
-	return &Store{
-		connPool: connPool,
-		Queries:  db.New(connPool),
-	}
-}
-
-// ExecTx grabs the Store struct, creates a new Store and executes the function.
-// If any of the queries inside fails AND the error is returned, the full transaction rolls back.
-// If everything goes according to plan, it gets committed.
-// Usage:
-// ExecTx(ctx, func(q db.Queries){ queries inside with q.queries.whatever() })
-func (s *Store) ExecTx(ctx context.Context, fn func(*db.Queries) error) error {
-	tx, err := s.connPool.Begin(ctx)
-	if err != nil {
-		return err
-	}
-
-	// Use the generated WithTx to create queries scoped to this transaction
-	qtx := s.Queries.WithTx(tx)
-
-	err = fn(qtx)
-	if err != nil {
-		if rbErr := tx.Rollback(ctx); rbErr != nil {
-			return fmt.Errorf("tx err: %v, rb err: %v", err, rbErr)
-		}
-		return err
-	}
-
-	return tx.Commit(ctx)
-}
-
 func (r *UserRepository) CreateUser(ctx context.Context, name string, email string, passwordhash string, displayname *string) (db.User, error) {
 	newuser := db.CreateUserParams{
 		Username:     name,
@@ -62,6 +24,12 @@ func (r *UserRepository) CreateUser(ctx context.Context, name string, email stri
 		DisplayName:  displayname,
 	}
 	return r.queries.CreateUser(ctx, newuser)
+}
+
+// GetByUsername requests a context and a full Username as string.
+// It returns either (the result, nil) or (nil, an error)
+func (r *UserRepository) GetByID(ctx context.Context, ID pgtype.UUID) (db.User, error) {
+	return r.queries.GetUserByID(ctx, ID)
 }
 
 // GetByUsername requests a context and a full Username as string.

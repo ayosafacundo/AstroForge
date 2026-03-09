@@ -1,6 +1,5 @@
 package db
 
-/*
 import (
 	dbgen "github.com/ayosafacundo/AstroForge/internal/db/dbgen"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -18,4 +17,3 @@ func NewStore(db *pgxpool.Pool) *Store {
 		db:      db,
 	}
 }
-*/

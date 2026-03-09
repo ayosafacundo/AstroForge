@@ -1,6 +1,8 @@
 package config
 
-import "os"
+import (
+	"os"
+)
 
 type Config struct {
 	DatabaseURL string
@@ -18,7 +20,7 @@ type MinioConfig struct {
 
 func Load() *Config {
 	return &Config{
-		DatabaseURL: os.Getenv("DATABASE_URL"),
+		DatabaseURL: os.Getenv("DATABASE_URI"),
 		RedisURL:    os.Getenv("REDIS_URL"),
 		JWTSecret:   os.Getenv("JWT_SECRET"),
 		Minio: MinioConfig{

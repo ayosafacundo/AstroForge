@@ -8,11 +8,12 @@ import (
 )
 
 type AuthService struct {
-	users *repository.UserRepository
+	users     *repository.UserRepository
+	JWTSecret string
 }
 
-func NewAuthService(users *repository.UserRepository) *AuthService {
-	return &AuthService{users}
+func NewAuthService(users *repository.UserRepository, JWTSecret string) *AuthService {
+	return &AuthService{users, JWTSecret}
 }
 
 func (s *AuthService) Login(
@@ -33,7 +34,7 @@ func (s *AuthService) Login(
 		return "", err
 	}
 
-	token := utils.GenerateJWT(user.ID)
+	token, err := utils.GenerateJWT(user.ID, s.JWTSecret)
 
-	return token, nil
+	return token, err
 }
