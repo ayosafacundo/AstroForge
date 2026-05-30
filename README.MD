@@ -1,10 +1,59 @@
-# AstroForge
-Made by Ayosa Facundo Ezequiel.  
+# AstroForge 🚀
+AstroForge is a full-stack, distributed 3D printing ecosystem that seamlessly bridges a specialized e-commerce marketplace with a high-throughput social infrastructure. Engineered with a localized, decentralized philosophy, the platform enables creators to securely store, version, and monetize 3D printable files while fostering organic engagement through a real-time, microblogging community framework.
 
-# Tech Stack
+---
+
+## 🛠️ Core Architectural Pillars
+
+### 📦 Git-Like 3D Asset Versioning System
+* **Immutable Asset Tracking:** Built an internal version control layout optimized for large binary objects (`.STL`, `.OBJ`, `.3MF`), tracking structural changes, parameter tweaks, and print-setting optimizations across a model's lifecycle.
+* **Deterministic Delta Commits:** Implemented a structured commit-and-tag workflow allowing creators to push model revisions, track breaking design fixes, and let end-users download legacy versions matching specific printer configurations.
+
+### 💳 Specialized 3D Printing E-Commerce Marketplace
+* **Asynchronous File Delivery:** Engineered a secure asset pipelines that abstracts storage mechanisms, generating time-expiring download tokens upon validated transactional verification.
+* **Metadata & Print Telemetry:** Designed an extensible relational database schema capable of indexing complex asset metadata (print times, filament types, infill densities, and printer compatibility arrays).
+
+### 💬 High-Throughput Microblogging (Twitter-like) Framework
+* **Real-Time Social Graph:** Architected a low-latency relational feed delivery mechanism processing user interactions, post dispatches, nested threading, and media attachments.
+* **Event-Driven Feed Architecture:** Optimized database indexing and query layouts to pull chronological, highly-relational timelines combining creator system updates (new model versions) with social user interactions.
+
+---
+
+## ⚡ Technical Highlights & System Design
+
+* **Full-Stack Decoupling:** Structured with a distinct separation of concerns—leveraging an optimized backend API to enforce access controls, resource isolation, and business logic, alongside a highly responsive, state-driven user interface.
+* **Optimized Object Storage & Caching:** Utilized Redis caching layers for instant feed delivery and MinIO/S3 object storage for binary 3D assets.
+* **Secure Sandbox Deliverables:** Enforces absolute file integrity checks via cryptographic hashing (SHA-256) to eliminate data corruption during multi-part model downloads.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+* Ensure you have [Docker & Docker Compose](https://www.docker.com/) installed.
+* Ensure you have the corresponding runtime environments configured for both the frontend and backend service instances.
+
+### Quickstart Installation
+1. **Clone the repository:**
+  ```bash
+  git clone [https://github.com/ayosafacundo/AstroForge.git](https://github.com/ayosafacundo/AstroForge.git)
+  cd AstroForge
+  ```
+2. **Configure Environment Variables:**  
+Create a .env file in both the ``backend` and `/frontend` directories using the provided `.env.example` templates.
+
+3. **Spin up the localized infrastructure:**
+```bash
+docker-compose up --build -d
+```
+### 💡 Tech Stack Customization Note
+This layout highlights that you aren't just building a simple CRUD app; you are handling complex concepts like binary asset handling, file integrity, and data indexing!
+
+---
+
+# 🛠️ Tech Stack
 
 ## Frontend
-
 Core:
 - React
 - React Router Dom (v7)
